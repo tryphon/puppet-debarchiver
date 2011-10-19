@@ -58,7 +58,7 @@ class debarchiver {
     }
   }
 
-  incoming_dir { [ lenny, wheezy, sid, karmic, lucid, maverick, natty, oneiric ]: }
+  incoming_dir { [ lenny, squeeze, wheezy, sid, karmic, lucid, maverick, natty, oneiric ]: }
 
   file { "/var/lib/debarchiver/dists/oldstable":
     ensure => "/var/lib/debarchiver/dists/lenny"
