@@ -47,13 +47,18 @@ class debarchiver {
     group => "debarchiver",
     mode => 600
   }
-  file { ["/var/lib/debarchiver/incoming/karmic", "/var/lib/debarchiver/incoming/lucid", "/var/lib/debarchiver/incoming/maverick"]:
-    ensure => directory,
-    owner => "root",
-    group => "debarchiver",
-    mode => 2775,
-    require => Package[debarchiver]
+
+  define incoming_dir() {
+    file { "/var/lib/debarchiver/incoming/$name":
+      ensure => directory,
+      owner => "root",
+      group => "debarchiver",
+      mode => 2775,
+      require => Package[debarchiver]
+    }
   }
+
+  incoming_dir { [ lenny, wheezy, sid, karmic, lucid, maverick, natty, oneiric ]: }
 
   file { "/var/lib/debarchiver/dists/oldstable":
     ensure => "/var/lib/debarchiver/dists/lenny"
