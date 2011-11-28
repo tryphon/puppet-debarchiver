@@ -61,15 +61,19 @@ class debarchiver {
   incoming_dir { [ lenny, squeeze, wheezy, sid, karmic, lucid, maverick, natty, oneiric ]: }
 
   file { "/var/lib/debarchiver/dists/oldstable":
-    ensure => "/var/lib/debarchiver/dists/lenny"
+    ensure => "/var/lib/debarchiver/dists/lenny",
+    require => Package[debarchiver]
   }
   file { "/var/lib/debarchiver/dists/stable":
-    ensure => "/var/lib/debarchiver/dists/squeeze"
+    ensure => "/var/lib/debarchiver/dists/squeeze",
+    require => Package[debarchiver]
   }
   file { "/var/lib/debarchiver/dists/testing":
-    ensure => "/var/lib/debarchiver/dists/wheezy"
+    ensure => "/var/lib/debarchiver/dists/wheezy",
+    require => Package[debarchiver]
   }
   file { "/var/lib/debarchiver/dists/unstable":
-    ensure => "/var/lib/debarchiver/dists/sid"
+    ensure => "/var/lib/debarchiver/dists/sid",
+    require => Package[debarchiver]
   }
 }
